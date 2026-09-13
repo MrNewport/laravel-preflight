@@ -1,0 +1,43 @@
+{
+    "name": "mrnewport/laravel-preflight",
+    "description": "Read-only Laravel and Vapor deployment checks with extensible reports and CI exit codes.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^12.0 || ^13.0",
+        "symfony/yaml": "^7.2 || ^8.0",
+        "illuminate/console": "^12.0 || ^13.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0 || ^11.0",
+        "pestphp/pest": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "MrNewport\\LaravelPreflight\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MrNewport\\LaravelPreflight\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MrNewport\\LaravelPreflight\\PreflightServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "pest"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
