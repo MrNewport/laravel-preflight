@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Artisan;
 use MrNewport\LaravelPreflight\Runner;
 use MrNewport\LaravelPreflight\VaporManifest;
 use Symfony\Component\Yaml\Yaml;
-uses(\MrNewport\LaravelPreflight\Tests\TestCase::class);
-
 
 function encryptedPolicy(): array
 {
