@@ -4,7 +4,7 @@ namespace MrNewport\LaravelPreflight;
 
 final readonly class VaporManifest implements Check
 {
-    public function __construct(private array $manifest, private string $environment = 'production', private array $limits = []) {}
+    public function __construct(private array $manifest, private string $environment = 'production', private array $limits = [], private mixed $environmentFiles = null, private ?string $manifestDirectory = null) {}
 
     public function run(): array
     {
@@ -32,9 +32,8 @@ final readonly class VaporManifest implements Check
             $minimum = $key === 'warm' ? 0 : 1;
             $results[] = Result::assertion('vapor.'.$key, is_int($maximum) && $maximum >= $minimum && is_int($value) && $value >= $minimum && $value <= $maximum, 'Set an explicit integer within the configured limit for '.$key.'.');
         }
-        $ignore = $this->manifest['ignore'] ?? [];
-        $hasEnvExclusion = is_array($ignore) && (in_array('.env*', $ignore, true) || (in_array('.env', $ignore, true) && in_array('.env.*', $ignore, true)));
-        $results[] = Result::assertion('vapor.environment_files', $hasEnvExclusion, 'Explicitly exclude .env and .env.* files from the deployment archive.');
+        $results[] = VaporEnvironmentFiles::check($this->manifest['ignore'] ?? [],
+            $settings, $this->environment, $this->environmentFiles, $this->manifestDirectory);
         return $results;
     }
 }

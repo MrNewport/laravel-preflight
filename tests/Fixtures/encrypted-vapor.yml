@@ -1,0 +1,24 @@
+ignore:
+  - .env
+  - .env.backup
+  - .env.local
+  - .env.production
+  - .env.staging
+  - .env.testing
+environments:
+  production:
+    domain: fictional.example
+    concurrency: 5
+    cli-concurrency: 2
+    warm: 0
+    memory: 512
+    build:
+      - php bootstrap/check-vapor-encrypted-environment.php production
+  staging:
+    domain: staging.fictional.example
+    concurrency: 2
+    cli-concurrency: 1
+    warm: 0
+    memory: 512
+    build:
+      - php bootstrap/check-vapor-encrypted-environment.php staging

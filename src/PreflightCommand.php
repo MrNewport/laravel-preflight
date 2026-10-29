@@ -24,9 +24,12 @@ class PreflightCommand extends Command
                     $path = $this->option('manifest') ?: base_path('vapor.yml');
                     // parseFile only accepts a local file; reject URL wrappers before reading.
                     if (!is_string($path) || str_contains($path, '://') || !is_file($path)) throw new \RuntimeException();
+                    $realPath = realpath($path);
+                    if ($realPath === false) throw new \RuntimeException();
                     $manifest = Yaml::parseFile($path);
                     if (!is_array($manifest)) throw new \RuntimeException();
-                    $checks[] = new VaporManifest($manifest, $this->option('environment'), config('preflight.vapor_limits', []));
+                    $checks[] = new VaporManifest($manifest, $this->option('environment'),
+                        config('preflight.vapor_limits', []), config('preflight.vapor_environment_files'), dirname($realPath));
                 } catch (\Throwable) {
                     $results[] = new Result('vapor.manifest', 'fail', 'A readable local YAML manifest is required.');
                 }
