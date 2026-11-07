@@ -1,5 +1,7 @@
 # Laravel Preflight
 
+Read the [complete handbook](docs/HANDBOOK.md) for installation, contracts, configuration, failures and application recipes. The [feature inventory](docs/FEATURES.md) maps implemented behavior to its boundaries.
+
 Read-only deployment checks for Laravel and Vapor. Catch exposed debug mode, invalid application keys, local session/cache storage, ignored domain configuration, and missing concurrency limits before a release. JSON output and exit codes make the same checks usable in local scripts and CI.
 
 Supports Laravel 12 on PHP 8.2+ and Laravel 13 on PHP 8.3+. No cloud API calls, new infrastructure, database writes, or automatic fixes.
