@@ -1,5 +1,7 @@
 # Laravel Preflight
 
+Explore the [interactive workshop](https://matthewnewport.com/packages/laravel-preflight/lab) with editable examples, package output and integration code.
+
 Read the [complete handbook](docs/HANDBOOK.md) for installation, contracts, configuration, failures and application recipes. The [feature inventory](docs/FEATURES.md) maps implemented behavior to its boundaries.
 
 Read-only deployment checks for Laravel and Vapor. Catch exposed debug mode, invalid application keys, local session/cache storage, ignored domain configuration, and missing concurrency limits before a release. JSON output and exit codes make the same checks usable in local scripts and CI.
